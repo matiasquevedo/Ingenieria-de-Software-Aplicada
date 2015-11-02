@@ -6,22 +6,22 @@
 <tiles:insertDefinition name="formTemplate">
 	<tiles:putAttribute name="body">
 	<div class="container">
-		<h1>Alumno</h1>
-		<form:form nethod="POST" id="form" data-toggle="validator" commandName="alumno"
+		<h1>Materias</h1>
+		<form:form nethod="POST" id="form" data-toggle="validator" commandName="materia"
 				role="form" cssClass="form-horizontal">
 				<spring:bind path="legajo">
 					<div class="form-group ${status.error ? 'has-error' : '' }">
-						<label class="control-label col-md-2" for="legajo">Legajo:</label>
+						<label class="control-label col-md-2" for="nombre">Legajo:</label>
 						<div class="col-md-10">
 							<form:input id="legajo" cssClass="form-control" path="legajo"
-								placeholder="Nro Legajo" required="required" />
+								placeholder="Legajo" required="required"
+								 />
 							<c:if test="${status.error}">
 								<span class="text-danger">${status.errorMessage}</span>
 							</c:if>
 						</div>
 					</div>
 				</spring:bind>
-				
 				<spring:bind path="nombre">
 					<div class="form-group ${status.error ? 'has-error' : '' }">
 						<label class="control-label col-md-2" for="nombre">Nombre:</label>
@@ -35,27 +35,12 @@
 						</div>
 					</div>
 				</spring:bind>
-				
-				<spring:bind path="apellido">
+				<spring:bind path="creditos">
 					<div class="form-group ${status.error ? 'has-error' : '' }">
-						<label class="control-label col-md-2" for="apellido">Apellido:</label>
+						<label class="control-label col-md-2" for="creditos">Creditos:</label>
 						<div class="col-md-10">
-							<form:input id="legajo" cssClass="form-control" path="apellido"
-								placeholder="Apellido" required="required"
-								 />
-							<c:if test="${status.error}">
-								<span class="text-danger">${status.errorMessage}</span>
-							</c:if>
-						</div>
-					</div>
-				</spring:bind>
-				
-				<spring:bind path="dni">
-					<div class="form-group ${status.error ? 'has-error' : '' }">
-						<label class="control-label col-md-2" for="dni">DNI:</label>
-						<div class="col-md-10">
-							<form:input id="dni" cssClass="form-control" path="dni"
-								placeholder="Nro DNI" type="number" required="required"  pattern="^[0-9]$" data-minlength="7"
+							<form:input id="creditos" cssClass="form-control" path="creditos"
+								placeholder="Creditos" required="required" type="number" pattern="^[0-9]$" 
 								 />
 							<c:if test="${status.error}">
 								<span class="text-danger">${status.errorMessage}</span>
@@ -72,12 +57,12 @@
 						<c:if test="${status.error}">
 							<span class="text-danger">${status.errorMessage}</span>
 						</c:if>
-					</div>
-				</div>
+					</div></div>
 				</spring:bind>
+				
 			<div class="form-group">
 				<div class="col-md-offset-2 col-md-5">
-				 	<a class="btn btn-primary" role="button" href='<c:url value="/alumnos/" />' title="Volver">Volver</a>
+				 	<a class="btn btn-primary" role="button" href='<c:url value="/carreras/" />' title="Volver">Volver</a>
 				</div>
 				<div class="col-md-5">
 					<button type="submit" class="btn btn-success">Guardar</button>

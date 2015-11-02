@@ -1,5 +1,7 @@
 package ar.edu.um.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -12,8 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ar.edu.um.domain.Alumno;
 import ar.edu.um.domain.Carrera;
@@ -39,7 +43,12 @@ public class AlumnoController {
 		}
 	
 		model.addAttribute("alumnos", alumnoService.findAll());
-		return "alumnos/index";
+		return "alumnos/tabla";
+	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public @ResponseBody List<Alumno> list(Model model) {
+		return alumnoService.findAll();
 	}
 	
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
@@ -48,12 +57,13 @@ public class AlumnoController {
 		model.addAttribute("carreras", carreraService.findAll());
 		return "alumnos/nuevo";
 	}
+	
 	@RequestMapping(value="/nuevo", method= RequestMethod.POST)
 	public String form(@Valid Alumno alumno, BindingResult result,
 			Model model){
 		if (!result.hasErrors()) {
 			alumnoService.create(alumno);
-			return "redirect:/alumnos/index";
+			return "redirect:/alumnos/";
 		} else {
 			for (ObjectError error : result.getAllErrors()) {
 				logger.info("Validation error: " + error.getDefaultMessage());
@@ -61,6 +71,15 @@ public class AlumnoController {
 		}
 		model.addAttribute("carreras", carreraService.findAll());
 		return "alumnos/nuevo";
+	}
+	
+	@RequestMapping(value = "/{id}/borrar", method = RequestMethod.GET)
+	public String borrar(@PathVariable("id") Integer id, Model model) {
+		Alumno alumno = alumnoService.findById(id);
+		if(alumno != null){
+			alumnoService.remove(alumno);
+		}
+		return "redirect:/alumnos/";
 	}
 	
 	@InitBinder

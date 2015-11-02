@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<tiles:insertDefinition name="defaultTemplate">
+<tiles:insertDefinition name="listTemplate">
 	<tiles:putAttribute name="body">
 <div class="container">
 	<h1>Listado de Alumnos</h1>
-	<table class="table table-bordered table-hover">
+	<table class="table table-bordered table-hover" id="dataTables">
 	<thead>
           <tr>
           <th><a href="" title="">Legajo</a></th>
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     <c:forEach items="${alumnos}" var="alumno">
-		<tr>
+		<tr class="odd gradeX">
 			<td><c:out value="${alumno.legajo}" /></td>
 			<td><c:out value="${alumno.apellido}" /></td>
 			<td><c:out value="${alumno.nombre}" /></td>
@@ -35,7 +35,6 @@
 			<a class="btn btn-primary" role="button" href='<c:url value="/alumnos/nuevo" />' title="Volver"><span class="glyphicon glyphicon-plus"></span> Nuevo</a>
 		</div>
 	</div>
-	
 	</div>
 </tiles:putAttribute>
 </tiles:insertDefinition>

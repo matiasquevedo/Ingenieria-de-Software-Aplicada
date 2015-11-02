@@ -105,6 +105,14 @@ public class Materia  implements java.io.Serializable {
 	public void setCreditos(Integer creditos) {
 		this.creditos = creditos;
 	}
+
+	public Carrera getCarrera() {
+		return carrera;
+	}
+
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
+	}
 	
 	
 
