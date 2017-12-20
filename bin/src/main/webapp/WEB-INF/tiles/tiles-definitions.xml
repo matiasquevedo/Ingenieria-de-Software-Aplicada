@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="defaultTemplate" template="/WEB-INF/views/templates/default.jsp">
+		<put-attribute name="title" expression="${titulo}" />
+		<put-attribute name="description"   expression="${descripcion}" />
+		<put-attribute name="menu"   value="/WEB-INF/views/templates/menu.jsp" />
+		<put-attribute name="body"   value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp" />
+		
+		<!-- JavaScript base -->
+		<put-list-attribute name="javascripts">
+        	<add-attribute value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" />
+        	<add-attribute value="/resources/js/bootstrap.min.js" />
+    	</put-list-attribute>
+    	
+    	<!-- Style base -->
+    	<put-list-attribute name="stylesheets">
+        	<add-attribute value="/resources/css/bootstrap.min.css" />
+    	</put-list-attribute>
+	</definition>
+	
+	<!-- Form -->
+	<definition name="formTemplate" extends="defaultTemplate">
+		<put-list-attribute name="javascripts" inherit="true">
+        	<add-attribute value="/resources/js/validator.js" />
+    	</put-list-attribute>
+	</definition>
+	
+	<!--  Tabla -->
+	<definition name="listTemplate" extends="defaultTemplate">
+		<put-list-attribute name="stylesheets" inherit="true">
+		  	<add-attribute value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+        	<add-attribute value="/resources/css/dataTables.bootstrap.css" />
+        	<add-attribute value="/resources/css/dataTables.responsive.css" />
+    	</put-list-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+        	<add-attribute value="/resources/js/jquery.dataTables.min.js" />
+        	<add-attribute value="/resources/js/dataTables.bootstrap.min.js" />
+        	<add-attribute value="/resources/js/list.js" />
+    	</put-list-attribute>
+	</definition>
+	
+</tiles-definitions>       
